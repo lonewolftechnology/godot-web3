@@ -1,0 +1,163 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://wallet.gd" type="Script" id=1]
+[ext_resource path="res://ERC20.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("connect:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "Connect Metamask" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("connect:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "connected"
+tracks/0/type = "value"
+tracks/0/path = NodePath("connect:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Connected!" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("connect:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "connecting"
+tracks/0/type = "value"
+tracks/0/path = NodePath("connect:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Connecting..." ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("connect:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "disconnected"
+tracks/0/type = "value"
+tracks/0/path = NodePath("connect:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Connect Metamask" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("connect:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="wallet" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="balance" type="Label" parent="."]
+margin_left = 218.0
+margin_top = 74.0
+margin_right = 810.0
+margin_bottom = 206.0
+text = "12345"
+align = 1
+valign = 1
+
+[node name="animation" type="AnimationPlayer" parent="."]
+autoplay = "disconnected"
+anims/RESET = SubResource( 1 )
+anims/connected = SubResource( 2 )
+anims/connecting = SubResource( 3 )
+anims/disconnected = SubResource( 4 )
+
+[node name="connect" type="Button" parent="."]
+margin_left = 812.0
+margin_top = 28.0
+margin_right = 978.0
+margin_bottom = 74.0
+text = "Connect Metamask"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="account" type="Label" parent="."]
+margin_left = 711.0
+margin_top = 87.0
+margin_right = 1005.0
+margin_bottom = 122.0
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="usdt" parent="." instance=ExtResource( 2 )]
+margin_left = 341.0
+margin_top = 219.0
+margin_right = -338.0
+margin_bottom = -366.0
+contract_address = "0x55d398326f99059ff775485246999027b3197955"

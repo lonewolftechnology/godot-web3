@@ -127,6 +127,9 @@ margin_bottom = 206.0
 text = "12345"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="animation" type="AnimationPlayer" parent="."]
 autoplay = "disconnected"
@@ -160,4 +163,13 @@ margin_left = 341.0
 margin_top = 219.0
 margin_right = -338.0
 margin_bottom = -366.0
-contract_address = "0x55d398326f99059ff775485246999027b3197955"
+contract_address = "0xdac17f958d2ee523a2206206994597c13d831ec7"
+
+[node name="sign" type="Button" parent="."]
+margin_left = 816.0
+margin_top = 215.0
+margin_right = 977.0
+margin_bottom = 262.0
+text = "Sign Message"
+
+[connection signal="pressed" from="sign" to="." method="_on_sign_pressed"]

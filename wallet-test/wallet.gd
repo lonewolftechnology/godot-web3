@@ -48,11 +48,9 @@ func connect_pressed():
 		var promise = win.ethereum.send("eth_requestAccounts").then(accts_ready)
 		anim.play("connecting")
 		printt("connecting ...", promise)
-		
-		
+
 	return
 
-	
 func _ready():
 	anim = get_node("animation")
 	get_node("connect").connect("pressed", self, "connect_pressed")
@@ -66,3 +64,11 @@ func _ready():
 	erc20_abi = jsjson.parse(content)
 
 
+
+
+func _on_sign_pressed():
+	web3_utils = JavaScript.get_interface('web3_utils')
+	
+	var result = web3_utils.metamask_sign_v4(accounts[0])
+	
+	return

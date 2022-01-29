@@ -158,18 +158,159 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="usdt" parent="." instance=ExtResource( 2 )]
-margin_left = 341.0
-margin_top = 219.0
-margin_right = -338.0
-margin_bottom = -366.0
-contract_address = "0xdac17f958d2ee523a2206206994597c13d831ec7"
+[node name="tabs" type="TabContainer" parent="."]
+margin_left = 73.0
+margin_top = 248.0
+margin_right = 982.0
+margin_bottom = 479.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="sign" type="Button" parent="."]
-margin_left = 816.0
-margin_top = 215.0
-margin_right = 977.0
-margin_bottom = 262.0
-text = "Sign Message"
+[node name="Assets" type="VBoxContainer" parent="tabs"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
 
-[connection signal="pressed" from="sign" to="." method="_on_sign_pressed"]
+[node name="usdt" parent="tabs/Assets" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 901.0
+margin_bottom = 0.0
+contract_address = "0x55d398326f99059ff775485246999027b3197955"
+
+[node name="Send" type="Control" parent="tabs"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="send" type="Button" parent="tabs/Send"]
+margin_left = 437.0
+margin_top = 99.0
+margin_right = 551.0
+margin_bottom = 119.0
+text = "Send"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="amount" type="TextEdit" parent="tabs/Send"]
+margin_left = 238.0
+margin_top = 99.0
+margin_right = 381.0
+margin_bottom = 123.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="recipient" type="TextEdit" parent="tabs/Send"]
+margin_left = 239.0
+margin_top = 68.0
+margin_right = 837.0
+margin_bottom = 89.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="tabs/Send"]
+margin_left = 150.0
+margin_top = 69.0
+margin_right = 250.0
+margin_bottom = 84.0
+text = "Recipient"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="tabs/Send"]
+margin_left = 156.0
+margin_top = 101.0
+margin_right = 207.0
+margin_bottom = 115.0
+text = "Amount"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="max" type="Button" parent="tabs/Send"]
+margin_left = 390.0
+margin_top = 96.0
+margin_right = 429.0
+margin_bottom = 121.0
+text = "max"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tokens" type="OptionButton" parent="tabs/Send"]
+margin_left = 361.0
+margin_top = 14.0
+margin_right = 513.0
+margin_bottom = 34.0
+text = "Token"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sign" type="Control" parent="tabs"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -865.0
+margin_bottom = -159.0
+
+[node name="msg" type="TextEdit" parent="tabs/Sign"]
+margin_left = 32.0
+margin_top = 21.0
+margin_right = 886.0
+margin_bottom = 122.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="tabs/Sign"]
+margin_left = 25.0
+margin_top = 172.0
+margin_right = 134.0
+margin_bottom = 186.0
+text = "Recover address:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="recover" type="Label" parent="tabs/Sign"]
+margin_left = 147.0
+margin_top = 167.0
+margin_right = 861.0
+margin_bottom = 187.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sign" type="Button" parent="tabs/Sign"]
+margin_left = 388.0
+margin_top = 136.0
+margin_right = 511.0
+margin_bottom = 162.0
+text = "Sign"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="status" type="Label" parent="."]
+margin_left = 293.0
+margin_top = 503.0
+margin_right = 762.0
+margin_bottom = 545.0
+align = 1
+valign = 1

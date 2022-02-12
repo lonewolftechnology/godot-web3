@@ -1,0 +1,28 @@
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+
+<script>
+
+var web3_instance;
+
+var web3_utils = {
+
+    init_web3: function() {
+
+      web3_instance = new Web3(window.ethereum);
+	  return web3_instance;
+   },
+
+   new_contract: function(abi, addr) {
+
+	   return new web3_instance.eth.Contract(abi, addr);
+   },
+
+  debug: function(obj) {
+
+    console.log(JSON.stringify(obj));
+	  console.log(obj);
+  },
+
+};
+
+</script>

@@ -51,7 +51,7 @@ func _accts_ready(p):
 
 Now you're ready to use web3. Use getBalance to request the main balance of the account
 
-```
+```gdscript
 var main_balance_ready = JavaScript.create_callback(self, "_main_balance_ready")
 
 func update():
@@ -60,7 +60,7 @@ func update():
 
 When the balance comes back, the result will be in `p[0]`
 
-```
+```gdscript
 func _main_balance_ready(p):
 	
 	get_node("balance").set_text(p[0])
@@ -78,7 +78,7 @@ Popular ABIs are incuded in `wallet-test`.
 Use javascript's own json parser to obtain the json object, then pass it as parameter to `web3_utils.new_contract`, along with the contract address
 
 
-```
+```gdscript
 func _ready():
 	jsjson = JavaScript.get_interface("JSON")
 
@@ -91,7 +91,7 @@ func _ready():
 
 Later, after the web3 object is created
 
-```
+```gdscript
 func init_web3(p_web3, abi):
 	web3_utils = JavaScript.get_interface("web3_utils")	
 	web3 = p_web3
@@ -111,7 +111,7 @@ Set the `contract.options.from` parameter to the source address, for calls that 
 
 To call a read-only method from the contract, use the `call` method
 
-```
+```gdscript
 func update():
 	contract.methods.balanceOf(wallet.get_account()).call().then(balance_updated)
 	contract.methods.symbol().call().then(symbol_updated)
@@ -121,7 +121,7 @@ Calls are still asynchronous, so create callbacks as usual.
 
 The return value of the call will be in `p[0]`
 
-```
+```gdscript
 func _symbol_updated(p):
 
 	symbol = p[0]
@@ -139,7 +139,7 @@ See [wallet-test/ERC20.gd](wallet-test/ERC20.gd) for more detail.
 
 For calls that modify the blockchain, use `send` on the contract method.
 
-```
+```gdscript
 func token_transfer(token, recipient, amount):
 	token.contract.methods.transfer(recipient, amount).send({"from": get_account()}).\
 		once('transactionHash', token_send_tx_hash).\
@@ -148,9 +148,11 @@ func token_transfer(token, recipient, amount):
 	status_update("Signing transaction ...")
 ```
 
-This calls the `transfer` method on the ERC20 contact. Note that we use multiple callbacks to catch different events and error conditions, consult the web3.js documentation for details. In this case, we catch errors (can be caused by the user refusing to sign the transaction, or an error from Metamask), or a successful call. We also get a callback when the transaction hash is available.
+This calls the `transfer` method on the ERC20 contact. Note that we use multiple callbacks to catch different events and error conditions, consult the [web3.js documentation](https://web3js.readthedocs.io/en/v1.7.0/) for details.
 
-```
+In this case, we catch errors (can be caused by the user refusing to sign the transaction, or an error from Metamask), or a successful call. We also get a callback when the transaction hash is available.
+
+```gdscript
 func _token_send_return(p):
 	status_update("Confirmed! tx hash " + p[0].transactionHash)
 
@@ -165,7 +167,7 @@ func _token_send_tx_hash(p):
 
 To request a signed message from the wallet, use the `web3.eth.personal.sign` method.
 
-```
+```gdscript
 func sign_pressed():
 	var msg = get_node("tabs/Sign/msg").get_text()
 	web3.eth.personal.sign(msg, get_account()).then(sign_returned).catch(sign_error)
@@ -184,7 +186,7 @@ func _sign_error(p):
 
 This will cause Metamask to show the sign message popup. The signed message is in `p[0]`. In this example we use `web3.eth.personal.ecRecover` right away to verify the signature, by passing the original message and the signed message, the expected result is the signing account. This is still an asynchronous call
 
-```
+```gdscript
 func _sign_recover_returned(p):
 	var signature_valid = p[0] == get_account()
 	if signature_valid:

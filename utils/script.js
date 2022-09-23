@@ -1,8 +1,10 @@
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
 
-<script>
+
 
 var web3_instance;
+
+var sign;
 
 var web3_utils = {
 
@@ -21,12 +23,12 @@ var web3_utils = {
 
     console.log(JSON.stringify(obj));
   },
+};
 
-  metamask_sign_v4: function(signer) {
+var metamask = {
+    sign_v4: function(signer) {
 
-
-
-	const msgParams = JSON.stringify({
+        const msgParams = SON.stringify({
             domain: {
               // Defining the chain aka Rinkeby testnet or Ethereum Main Net
               chainId: 1,
@@ -63,23 +65,26 @@ var web3_utils = {
                 { name: 'title', type: 'string' },
               ],
             },
-          });
+          });;
+    
+        var params = [signer, msgParams];
+        var method = 'eth_signTypedData_v4';
+    
+        web3.currentProvider.sendAsync(
+            {
+                method,
+                params,
+                signer,
+            },
+            function (err, result) {
+                  console.log(result);
+                  sign = result.result;
+            }
+        )
+      },
 
-    var params = [signer, msgParams];
-    var method = 'eth_signTypedData_v4';
-
-    web3.currentProvider.sendAsync(
-        {
-            method,
-            params,
-            signer,
-        },
-        function (err, result) {
-              console.log(result);
-        }
-    )
-  }
+      get_result: function() {
+        
+        console.log(sign);
+      }
 };
-
-
-</script>

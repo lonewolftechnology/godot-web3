@@ -34,7 +34,7 @@ func init_web3(p_web3, abi):
 
 func update():
 	contract.methods.balanceOf(get_parent().get_account()).call().then(balance_updated)
-	contract.methods.symbol().call().then(symbol_updated)
+	contract.methods.name().call().then(symbol_updated)
 
 
 func _ready():

@@ -1,5 +1,6 @@
 extends Control
 
+var metamask
 var web3
 var web3_utils
 var erc20_abi
@@ -9,6 +10,7 @@ var accounts = []
 
 var accts_ready = JavaScript.create_callback(self, "_accts_ready")
 var main_balance_ready = JavaScript.create_callback(self, "_main_balance_ready")
+var get_signature = JavaScript.create_callback(self, "_get_signature")
 
 func get_account():
 	if accounts.size():
@@ -62,13 +64,21 @@ func _ready():
 	var content = file.get_as_text()
 	file.close()
 	erc20_abi = jsjson.parse(content)
-
-
+	
+	printt("json abi", erc20_abi)
 
 
 func _on_sign_pressed():
-	web3_utils = JavaScript.get_interface('web3_utils')
+	metamask = JavaScript.get_interface('metamask')
 	
-	var result = web3_utils.metamask_sign_v4(accounts[0])
+	var result = metamask.sign_v4(accounts[0])
+	
+	return
+
+
+func _on_result_pressed():
+	metamask = JavaScript.get_interface('metamask')
+	
+	metamask.get_signature()
 	
 	return

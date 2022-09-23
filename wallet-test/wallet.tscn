@@ -163,13 +163,20 @@ margin_left = 341.0
 margin_top = 219.0
 margin_right = -338.0
 margin_bottom = -366.0
-contract_address = "0xdac17f958d2ee523a2206206994597c13d831ec7"
 
 [node name="sign" type="Button" parent="."]
-margin_left = 816.0
-margin_top = 215.0
-margin_right = 977.0
-margin_bottom = 262.0
+margin_left = 812.0
+margin_top = 174.0
+margin_right = 980.0
+margin_bottom = 221.0
 text = "Sign Message"
 
+[node name="get signature" type="Button" parent="."]
+margin_left = 806.0
+margin_top = 307.0
+margin_right = 982.0
+margin_bottom = 350.0
+text = "get signature"
+
 [connection signal="pressed" from="sign" to="." method="_on_sign_pressed"]
+[connection signal="pressed" from="get signature" to="." method="_on_result_pressed"]

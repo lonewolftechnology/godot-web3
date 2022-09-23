@@ -118,13 +118,14 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+contract_address = "0x2bfcc1D8005F59b72B25D28939451205E8189A9F"
 
 [node name="balance" type="Label" parent="."]
 margin_left = 218.0
 margin_top = 74.0
 margin_right = 810.0
 margin_bottom = 206.0
-text = "12345"
+text = "Nil"
 align = 1
 valign = 1
 __meta__ = {
@@ -144,9 +145,6 @@ margin_top = 28.0
 margin_right = 978.0
 margin_bottom = 74.0
 text = "Connect Metamask"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="account" type="Label" parent="."]
 margin_left = 711.0
@@ -169,7 +167,7 @@ margin_left = 812.0
 margin_top = 174.0
 margin_right = 980.0
 margin_bottom = 221.0
-text = "Sign Message"
+text = "Sign transaction"
 
 [node name="get signature" type="Button" parent="."]
 margin_left = 806.0
@@ -178,5 +176,14 @@ margin_right = 982.0
 margin_bottom = 350.0
 text = "get signature"
 
+[node name="mint" type="Button" parent="."]
+anchor_bottom = 0.017
+margin_left = 806.0
+margin_top = 395.0
+margin_right = 981.0
+margin_bottom = 425.8
+text = "mint NFT"
+
 [connection signal="pressed" from="sign" to="." method="_on_sign_pressed"]
 [connection signal="pressed" from="get signature" to="." method="_on_result_pressed"]
+[connection signal="pressed" from="mint" to="." method="_on_mint_pressed"]

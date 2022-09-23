@@ -3,10 +3,12 @@ extends Control
 var metamask
 var web3
 var web3_utils
-var erc20_abi
+var nft_abi
 var anim
 var jsjson
 var accounts = []
+var uri = "test"
+export var contract_address = ""
 
 var accts_ready = JavaScript.create_callback(self, "_accts_ready")
 var main_balance_ready = JavaScript.create_callback(self, "_main_balance_ready")
@@ -37,7 +39,7 @@ func _accts_ready(p):
 		get_node("account").set_text(accounts[0])
 
 	web3 = web3_utils.init_web3()
-	get_node("usdt").init_web3(web3, erc20_abi)
+	get_node("usdt").init_web3(web3, nft_abi, contract_address)
 	
 	web3.eth.getBalance(accounts[0]).then(main_balance_ready)
 	
@@ -63,9 +65,9 @@ func _ready():
 	file.open("res://erc20.json", File.READ)
 	var content = file.get_as_text()
 	file.close()
-	erc20_abi = jsjson.parse(content)
+	nft_abi = jsjson.parse(content)
 	
-	printt("json abi", erc20_abi)
+	printt("json abi", nft_abi)
 
 
 func _on_sign_pressed():
@@ -82,3 +84,12 @@ func _on_result_pressed():
 	metamask.get_signature()
 	
 	return
+
+
+func _on_mint_pressed():
+	web3_utils = JavaScript.get_interface("web3_utils")
+	
+	web3_utils.mint(accounts[0], contract_address, nft_abi, uri)
+	
+	
+	
